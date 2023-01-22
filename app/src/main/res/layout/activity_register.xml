@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="#DFADBD"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/register_IMG_musicimg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/img_music" />
+
+    <TextView
+        android:id="@+id/register_TXT_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="MyMusic"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/register_TXT_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="text"
+        android:hint="Name: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/register_TXT_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="phone"
+        android:hint="Phone: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/register_TXT_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="textEmailAddress"
+        android:hint="Username: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
+
+
+    <EditText
+        android:id="@+id/register_TXT_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="textPassword"
+        android:hint="Password: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/register_TXT_confirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="textPassword"
+        android:hint="Confirm password: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/register_BTN_registerbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="#B94DCC"
+        android:text="Register"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Already have an account?"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/register_TXT_loginhere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Login here"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</LinearLayout>
