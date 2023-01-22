@@ -6,28 +6,27 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText login_TXT_username;
+    private EditText login_TXT_email;
     private EditText login_TXT_password;
     private AppCompatButton login_BTN_loginbutton;
     private TextView login_TXT_registernow;
-    private String username;
+    private String email;
     private String password;
-    private String getPassword;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://androidfinalproject-23-default-rtdb.firebaseio.com/users");
 
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,43 +34,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         findViews();
+        mAuth = FirebaseAuth.getInstance();
 
         login_BTN_loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                init();
-                if(username.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please enter your username", Toast.LENGTH_SHORT).show();
-                }
-                else if(password.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please enter your password", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(username)){
-                                getPassword = snapshot.child(username).child(password).getValue(String.class);
-                                if(getPassword.equals(password)){
-                                    Toast.makeText(LoginActivity.this, "User login successfully", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
-                                }
-                                else{
-                                    Toast.makeText(LoginActivity.this, "Wrong password, please try again", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else{
-                                Toast.makeText(LoginActivity.this, "Username not exist", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
+                loginUser();
             }
         });
 
@@ -85,15 +53,35 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void loginUser() {
+        email = login_TXT_email.getText().toString();
+        password = login_TXT_password.getText().toString();
+        if(TextUtils.isEmpty(email)){
+            login_TXT_email.setError("Email is empty");
+            login_TXT_email.requestFocus();
+        }else if(TextUtils.isEmpty(password)){
+            login_TXT_password.setError("Password is empty");
+            login_TXT_password.requestFocus();
+        }else{
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(LoginActivity.this,"User logged successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }else{
+                        Toast.makeText(LoginActivity.this,"User login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
     private void findViews(){
-        login_TXT_username = findViewById(R.id.login_TXT_username);
+        login_TXT_email = findViewById(R.id.login_TXT_email);
         login_TXT_password = findViewById(R.id.login_TXT_password);
         login_BTN_loginbutton = findViewById(R.id.login_BTN_loginbutton);
         login_TXT_registernow = findViewById(R.id.login_TXT_registernow);
     }
 
-    private void init(){
-        username = login_TXT_username.getText().toString();
-        password = login_TXT_password.getText().toString();
-    }
 }

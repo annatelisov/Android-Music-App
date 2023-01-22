@@ -29,13 +29,13 @@
         android:textStyle="italic" />
 
     <EditText
-        android:id="@+id/register_TXT_name"
+        android:id="@+id/register_TXT_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:inputType="text"
-        android:hint="Name: "
+        android:hint="Email: "
         android:textStyle="bold"
         android:textSize="20sp"
         android:maxLines="1"/>
@@ -52,18 +52,6 @@
         android:textSize="20sp"
         android:maxLines="1"/>
 
-    <EditText
-        android:id="@+id/register_TXT_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:inputType="textEmailAddress"
-        android:hint="Username: "
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:maxLines="1"/>
-
 
     <EditText
         android:id="@+id/register_TXT_password"
@@ -74,19 +62,6 @@
         android:layout_marginEnd="40dp"
         android:inputType="textPassword"
         android:hint="Password: "
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:maxLines="1"/>
-
-    <EditText
-        android:id="@+id/register_TXT_confirmpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:inputType="textPassword"
-        android:hint="Confirm password: "
         android:textStyle="bold"
         android:textSize="20sp"
         android:maxLines="1"/>
