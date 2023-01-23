@@ -22,11 +22,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:text="MyMusic"
         android:textColor="@color/white"
         android:textSize="60sp"
         android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/register_TXT_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Registration"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/register_TXT_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="text"
+        android:hint="Name: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"/>
 
     <EditText
         android:id="@+id/register_TXT_email"
@@ -34,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:hint="Email: "
         android:textStyle="bold"
         android:textSize="20sp"

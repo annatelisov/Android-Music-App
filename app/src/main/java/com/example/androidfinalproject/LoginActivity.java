@@ -59,9 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(email)){
             login_TXT_email.setError("Email is empty");
             login_TXT_email.requestFocus();
+            return;
         }else if(TextUtils.isEmpty(password)){
             login_TXT_password.setError("Password is empty");
             login_TXT_password.requestFocus();
+            return;
         }else{
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
