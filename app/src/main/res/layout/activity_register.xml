@@ -39,13 +39,13 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/register_TXT_name"
+        android:id="@+id/register_TXT_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:inputType="text"
-        android:hint="Name: "
+        android:hint="Username: "
         android:textStyle="bold"
         android:textSize="20sp"
         android:maxLines="1"/>
