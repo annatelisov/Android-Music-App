@@ -5,51 +5,141 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DFADBD"
-    tools:context=".Activities.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activities.MainActivity">
 
     <TextView
         android:id="@+id/main_TXT_songs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:padding="20dp"
         android:text="Songs"
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/main_TXT_nosongs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/main_TXT_songs"
+        android:layout_centerHorizontal="true"
         android:padding="20dp"
         android:text="No songs found"
         android:textColor="@color/black"
         android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/main_TXT_songs"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_LST_songs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_TXT_songs"/>
+        android:layout_below="@id/main_TXT_songs"
+        android:layout_marginBottom="100dp"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/main_BTN_gotouserpage"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_LINEAR_addsongwindow"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@id/main_TXT_songs"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:visibility="invisible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_cancel"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            app:srcCompat="@drawable/img_cancel" />
+
+        <TextView
+            android:id="@+id/main_TXT_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="Add a new song here"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/main_TXT_addname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:inputType="text"
+            android:hint="Song name"
+            android:textSize="20sp"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/main_TXT_addauthorname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:inputType="text"
+            android:hint="Author name"
+            android:textSize="20sp"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/main_TXT_addduration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:inputType="number"
+            android:hint="Duration(in seconds)"
+            android:textSize="20sp"
+            android:maxLines="1"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_BTN_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:background="#B94DCC"
+            android:text="add my song"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="#B94DCC"
-        android:padding="16dp"
-        android:text="Go to your page"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_BTN_gotouserpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#B94DCC"
+            android:text="Go to your page"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_BTN_addsong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#B94DCC"
+            android:text="Add a song"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </RelativeLayout>

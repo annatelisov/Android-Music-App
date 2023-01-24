@@ -6,6 +6,18 @@ import java.util.ArrayList;
 
 public class DataManager {
 
+    public static Song newSong(String name, String authorname, int duration){
+        Song song = new Song()
+                .setName(name)
+                .setNameAuthor(authorname)
+                .setDuration(duration);
+        return song;
+    }
+    public static ArrayList<Song> addToSongs(ArrayList<Song> songs, Song song){
+        ArrayList<Song> updatedSongs = songs;
+        updatedSongs.add(song);
+        return  updatedSongs;
+    }
     public static ArrayList<Song> getSongs() {
         ArrayList<Song> songs = new ArrayList<>();
 
