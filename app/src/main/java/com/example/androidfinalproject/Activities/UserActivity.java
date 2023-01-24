@@ -7,6 +7,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -101,11 +102,13 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                if(user_TXT_username.getText().toString() != null) {
-                    user.setUsername(user_TXT_username.getText().toString().trim());
+                String username = user_TXT_username.getText().toString();
+                String phone = user_TXT_phone.getText().toString();
+                if(!TextUtils.isEmpty(username)) {
+                    user.setUsername(username);
                 }
-                if(user_TXT_phone.getText().toString() != null) {
-                    user.setPhone(user_TXT_phone.getText().toString().trim());
+                if(!TextUtils.isEmpty(phone)) {
+                    user.setPhone(phone);
                 }
                 ref.child(mAuth.getCurrentUser().getUid()).setValue(user);
             }

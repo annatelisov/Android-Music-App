@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText main_TXT_addname;
     private EditText main_TXT_addauthorname;
     private EditText main_TXT_addduration;
+    private EditText main_TXT_addpath;
     private AppCompatButton main_BTN_add;
     private AppCompatImageView main_IMG_cancel;
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         main_LST_songs.setLayoutManager(new LinearLayoutManager(this));
         main_LST_songs.setAdapter(adapter_song);
 
-        checkView(adapter_song);
+                checkView(adapter_song);
         for(int i = 0; i < adapter_song.getItemCount(); i++){
             saveSongs(songs.get(i));
         }
@@ -105,14 +106,16 @@ public class MainActivity extends AppCompatActivity {
         db.getReference("Songs").child(song.getName() + " " + song.getNameAuthor()).setValue(song);
     }
 
-    protected ArrayList<Song> addSong(ArrayList<Song> songs){
+    protected void addSong(ArrayList<Song> songs){
         String name = main_TXT_addname.getText().toString();
         String authorname = main_TXT_addauthorname.getText().toString();
         String strDuration = main_TXT_addduration.getText().toString();
+        String path = main_TXT_addpath.getText().toString();
         int duration = Integer.parseInt(strDuration);
-        Song newSong = DataManager.newSong(name, authorname, duration);
+        Song newSong = DataManager.newSong(name, authorname, duration, path);
+        newSong.setFavorite(true);
         saveSongs(newSong);
-        return DataManager.addToSongs(songs, newSong);
+        DataManager.addToSongs(songs, newSong);
     }
 
     private void findViews(){
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         main_TXT_addname = findViewById(R.id.main_TXT_addname);
         main_TXT_addauthorname = findViewById(R.id.main_TXT_addauthorname);
         main_TXT_addduration = findViewById(R.id.main_TXT_addduration);
+        main_TXT_addpath = findViewById(R.id.main_TXT_addpath);
         main_BTN_add = findViewById(R.id.main_BTN_add);
         main_IMG_cancel = findViewById(R.id.main_IMG_cancel);
     }

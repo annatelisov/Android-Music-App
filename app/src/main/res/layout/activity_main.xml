@@ -98,6 +98,17 @@
             android:textSize="20sp"
             android:maxLines="1"/>
 
+        <EditText
+            android:id="@+id/main_TXT_addpath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:inputType="number"
+            android:hint="Song's path"
+            android:textSize="20sp"
+            android:maxLines="1"/>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_BTN_add"

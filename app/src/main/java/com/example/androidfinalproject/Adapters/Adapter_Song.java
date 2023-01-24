@@ -1,7 +1,7 @@
 package com.example.androidfinalproject.Adapters;
 
 import android.content.Context;
-import android.os.Handler;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidfinalproject.Classes.MySong;
+import com.example.androidfinalproject.Activities.SongActivity;
 import com.example.androidfinalproject.Classes.Song;
 import com.example.androidfinalproject.R;
 import com.example.androidfinalproject.Utils.MyStringUtils;
@@ -43,10 +45,23 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
     public void onBindViewHolder(final SongViewHolder holder, final int position) {
         Log.d("pttt", "Pos= " + position);
         Song song = songs.get(position);
+        int temp = position;
 
         holder.song_LBL_name.setText(song.getName());
         holder.song_LBL_nameauthor.setText(song.getNameAuthor());
         holder.song_LBL_duration.setText(MyStringUtils.getTimeBySeconds(song.getDuration()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySong.getInstance().reset();
+                MySong.currentIndex = temp;
+                Intent intent = new Intent(context, SongActivity.class);
+                intent.putExtra("LIST", songs);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
         holder.song_IMG_heart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +75,6 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         } else {
             holder.song_IMG_star.setVisibility(View.INVISIBLE);
         }
-
     }
 
     class SongViewHolder extends RecyclerView.ViewHolder {
@@ -82,8 +96,6 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
             song_LBL_duration = itemView.findViewById(R.id.song_LBL_duration);
             song_IMG_star = itemView.findViewById(R.id.song_IMG_star);
             song_IMG_heart = itemView.findViewById(R.id.song_IMG_heart);
-
-
         }
 
     }

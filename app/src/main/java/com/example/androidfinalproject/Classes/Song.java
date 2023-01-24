@@ -4,7 +4,8 @@ public class Song {
 
     private String name = "";
     private String nameAuthor = "";
-    private String image = "";
+
+    private String path = "";
     private int duration = 0;
     private boolean star = false;
     public Song() {
@@ -28,21 +29,21 @@ public class Song {
         return this;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public Song setPath(String path) {
+        this.path = path;
+        return this;
+    }
+
     public int getDuration() {
         return duration;
     }
 
     public Song setDuration(int duration) {
         this.duration = duration;
-        return this;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public Song setImage(String image) {
-        this.image = image;
         return this;
     }
 
