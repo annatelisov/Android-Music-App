@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="#DFADBD"
-    tools:context=".WelcomeActivity"
+    tools:context=".Activities.WelcomeActivity"
     android:orientation="vertical">
 
     <com.google.android.material.imageview.ShapeableImageView

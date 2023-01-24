@@ -1,6 +1,8 @@
-package com.example.androidfinalproject;
+package com.example.androidfinalproject.Classes;
 
 import android.app.Application;
+
+import com.example.androidfinalproject.Utils.MyImageUtils;
 
 public class App extends Application {
 

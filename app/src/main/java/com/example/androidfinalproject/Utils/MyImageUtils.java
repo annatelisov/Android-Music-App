@@ -1,9 +1,10 @@
-package com.example.androidfinalproject;
+package com.example.androidfinalproject.Utils;
 
 import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.androidfinalproject.R;
 
 public class MyImageUtils {
 

@@ -1,4 +1,4 @@
-package com.example.androidfinalproject;
+package com.example.androidfinalproject.Classes;
 
 public class User {
     String username, email, password, phone;

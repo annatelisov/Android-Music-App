@@ -1,10 +1,11 @@
-package com.example.androidfinalproject;
+package com.example.androidfinalproject.Classes;
 
 public class Song {
 
     private String name = "";
     private String nameAuthor = "";
     private String image = "";
+    private int duration = 0;
     private boolean star = false;
     public Song() {
     }
@@ -24,6 +25,15 @@ public class Song {
 
     public Song setNameAuthor(String nameAuthor) {
         this.nameAuthor = nameAuthor;
+        return this;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public Song setDuration(int duration) {
+        this.duration = duration;
         return this;
     }
 

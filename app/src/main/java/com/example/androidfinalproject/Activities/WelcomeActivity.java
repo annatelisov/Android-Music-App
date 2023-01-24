@@ -1,4 +1,4 @@
-package com.example.androidfinalproject;
+package com.example.androidfinalproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -6,6 +6,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.androidfinalproject.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
