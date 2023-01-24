@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton main_BTN_add;
     private AppCompatImageView main_IMG_cancel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_addsong = findViewById(R.id.main_BTN_addsong);
         main_LINEAR_addsongwindow = findViewById(R.id.main_LINEAR_addsongwindow);
         main_TXT_addname = findViewById(R.id.main_TXT_addname);
-        main_TXT_addauthorname = findViewById(R.id.main_TXT_addduration);
+        main_TXT_addauthorname = findViewById(R.id.main_TXT_addauthorname);
         main_TXT_addduration = findViewById(R.id.main_TXT_addduration);
         main_BTN_add = findViewById(R.id.main_BTN_add);
         main_IMG_cancel = findViewById(R.id.main_IMG_cancel);

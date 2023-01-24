@@ -1,7 +1,6 @@
 package com.example.androidfinalproject.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,11 +10,8 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidfinalproject.Activities.MainActivity;
-import com.example.androidfinalproject.Activities.UserActivity;
 import com.example.androidfinalproject.Classes.Song;
 import com.example.androidfinalproject.R;
-import com.example.androidfinalproject.Utils.MyImageUtils;
 import com.example.androidfinalproject.Utils.MyStringUtils;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -55,7 +51,7 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         holder.song_IMG_heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                song.setFavorite(!song.isFavorite());
+                song.setFavorite(true);
             }
         });
 
@@ -64,17 +60,6 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         } else {
             holder.song_IMG_star.setVisibility(View.INVISIBLE);
         }
-
-
-
-        final Handler handler = new Handler();
-        final int delay = 20; // 1000 milliseconds == 1 second
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                //MyImageUtils.getInstance().load(song.getImage(), holder.song_IMG_image);
-            }
-        }, delay);
 
     }
 

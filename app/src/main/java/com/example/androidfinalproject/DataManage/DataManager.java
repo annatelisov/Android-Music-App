@@ -29,13 +29,6 @@ public class DataManager {
         );
 
         songs.add(new Song()
-                //.setImage("https://m.media-amazon.com/images/I/810eYIM3PZL.__AC_SX300_SY300_QL70_FMwebp_.jpg")
-                .setName("Thinking out Loud")
-                .setNameAuthor("Ed Sheeran")
-                .setDuration(281)
-        );
-
-        songs.add(new Song()
                 //.setImage("https://upload.wikimedia.org/wikipedia/en/4/43/Photograph_cover.png?20151102161534")
                 .setName("Photograph")
                 .setNameAuthor("Ed Sheeran")

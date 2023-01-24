@@ -120,23 +120,23 @@
         android:padding="10dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_BTN_gotouserpage"
+            android:id="@+id/main_BTN_addsong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#B94DCC"
-            android:text="Go to your page"
+            android:text="Add a song"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_BTN_addsong"
+            android:id="@+id/main_BTN_gotouserpage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="#B94DCC"
-            android:text="Add a song"
+            android:text="Go to your page"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
