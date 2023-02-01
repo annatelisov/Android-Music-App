@@ -29,6 +29,11 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         this.songs = songs;
     }
 
+    public ArrayList<Song> updateList(ArrayList<Song> songs){
+        this.songs = songs;
+        return songs;
+    }
+
     @Override
     public int getItemCount() {
         return songs == null ? 0 : songs.size();
@@ -51,7 +56,7 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         holder.song_LBL_nameauthor.setText(song.getNameAuthor());
         holder.song_LBL_duration.setText(MyStringUtils.getTimeBySeconds(song.getDuration()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MySong.getInstance().reset();
@@ -61,7 +66,7 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
-        });
+        });*/
 
         holder.song_IMG_heart.setOnClickListener(new View.OnClickListener() {
             @Override

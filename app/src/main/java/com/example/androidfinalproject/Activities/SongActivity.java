@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,6 +41,47 @@ public class SongActivity extends AppCompatActivity {
 
         song_TXT_title.setSelected(true);
         songs = (ArrayList<Song>) getIntent().getSerializableExtra("LIST");
+
+        setResourcesWithMusic();
+
+        SongActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(mediaPlayer!=null){
+                    mysong_BAR_seekbar.setProgress(mediaPlayer.getCurrentPosition());
+                    mysong_TXT_nowtime.setText(MyStringUtils.getTimeBySeconds(mediaPlayer.getCurrentPosition())+"");
+
+                    if(mediaPlayer.isPlaying()){
+                        mysong_IMG_pause.setImageResource(R.drawable.ic_pause);
+                        mysong_IMG_img.setRotation(x++);
+                    }else{
+                        mysong_IMG_pause.setImageResource(R.drawable.ic_play);
+                        mysong_IMG_img.setRotation(0);
+                    }
+
+                }
+                new Handler().postDelayed(this,100);
+            }
+        });
+
+        mysong_BAR_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(mediaPlayer!=null && fromUser){
+                    mediaPlayer.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     private void findViews() {

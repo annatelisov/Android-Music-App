@@ -1,6 +1,5 @@
 package com.example.androidfinalproject.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -9,22 +8,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidfinalproject.Adapters.Adapter_Song;
-import com.example.androidfinalproject.Classes.User;
 import com.example.androidfinalproject.DataManage.DataManager;
 import com.example.androidfinalproject.R;
 import com.example.androidfinalproject.Classes.Song;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText main_TXT_addpath;
     private AppCompatButton main_BTN_add;
     private AppCompatImageView main_IMG_cancel;
+    private ArrayList<Song> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +57,30 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         findViews();
 
-        ArrayList<Song> songs = DataManager.getSongs();
+        songs = DataManager.setSongs();
+        readSongs();
         Adapter_Song adapter_song = new Adapter_Song(this, songs);
         main_LST_songs.setLayoutManager(new LinearLayoutManager(this));
         main_LST_songs.setAdapter(adapter_song);
 
-                checkView(adapter_song);
+        checkView(adapter_song);
         for(int i = 0; i < adapter_song.getItemCount(); i++){
             saveSongs(songs.get(i));
+        }
+
+        String[] projection = {
+                MediaStore.Audio.Media.TITLE,
+                MediaStore.Audio.Media.DATA,
+                MediaStore.Audio.Media.DURATION
+        };
+
+        String selection = MediaStore.Audio.Media.IS_MUSIC +" != 0";
+
+        Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,projection,selection,null,null);
+        while(cursor.moveToNext()){
+            Song songData = new Song();
+            if(new File(songData.getPath()).exists())
+                songs.add(songData);
         }
 
         main_BTN_gotouserpage.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addSong(songs);
+                songs.add(addSong(DataManager.setSongs()));
+                adapter_song.updateList(songs);
+                main_LST_songs.setAdapter(adapter_song);
                 main_LINEAR_addsongwindow.setVisibility(View.INVISIBLE);
                 main_LST_songs.setVisibility(View.VISIBLE);
             }
@@ -106,16 +129,20 @@ public class MainActivity extends AppCompatActivity {
         db.getReference("Songs").child(song.getName() + " " + song.getNameAuthor()).setValue(song);
     }
 
-    protected void addSong(ArrayList<Song> songs){
+    protected Song addSong(ArrayList<Song> songs){
         String name = main_TXT_addname.getText().toString();
         String authorname = main_TXT_addauthorname.getText().toString();
         String strDuration = main_TXT_addduration.getText().toString();
         String path = main_TXT_addpath.getText().toString();
         int duration = Integer.parseInt(strDuration);
-        Song newSong = DataManager.newSong(name, authorname, duration, path);
+        Song newSong = new Song()
+                .setName(name)
+                .setNameAuthor(authorname)
+                .setPath(path)
+                .setDuration(duration);
         newSong.setFavorite(true);
         saveSongs(newSong);
-        DataManager.addToSongs(songs, newSong);
+        return newSong;
     }
 
     private void findViews(){
@@ -138,6 +165,31 @@ public class MainActivity extends AppCompatActivity {
         }else{
             main_TXT_nosongs.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(main_LST_songs!=null){
+            main_LST_songs.setAdapter(new Adapter_Song(getApplicationContext(), songs));
+        }
+    }
+
+    private void readSongs() {
+        db.getReference("Songs").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot song : dataSnapshot.getChildren()) {
+                        songs.add(song.getValue(Song.class));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }
