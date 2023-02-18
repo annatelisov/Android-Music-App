@@ -7,8 +7,10 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -29,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_TXT_nosongs;
     private AppCompatButton main_BTN_gotouserpage;
     private AppCompatButton main_BTN_addsong;
-    private AppCompatButton main_BTN_addimg;
     private LinearLayoutCompat main_LINEAR_addsongwindow;
     private EditText main_TXT_addname;
     private EditText main_TXT_addauthorname;
@@ -117,14 +119,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user == null){
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }
-    }
 
     protected void saveSongs(Song song){
         db.getReference("Songs").child(song.getName() + " " + song.getNameAuthor()).setValue(song);
@@ -147,12 +141,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     private void findViews(){
         main_LST_songs = findViewById(R.id.main_LST_songs);
         main_TXT_nosongs = findViewById(R.id.main_TXT_nosongs);
         main_BTN_gotouserpage = findViewById(R.id.main_BTN_gotouserpage);
         main_BTN_addsong = findViewById(R.id.main_BTN_addsong);
-        main_BTN_addimg = findViewById(R.id.main_BTN_addimg);
         main_LINEAR_addsongwindow = findViewById(R.id.main_LINEAR_addsongwindow);
         main_TXT_addname = findViewById(R.id.main_TXT_addname);
         main_TXT_addauthorname = findViewById(R.id.main_TXT_addauthorname);

@@ -52,7 +52,9 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         holder.song_LBL_name.setText(song.getName());
         holder.song_LBL_nameauthor.setText(song.getNameAuthor());
         holder.song_LBL_duration.setText(MyStringUtils.getTimeBySeconds(song.getDuration()));
-        holder.song_IMG_image.setImageResource(song.getImg());
+        if(song.getImg() != 0) {
+            holder.song_IMG_image.setImageResource(song.getImg());
+        }
 
 
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
