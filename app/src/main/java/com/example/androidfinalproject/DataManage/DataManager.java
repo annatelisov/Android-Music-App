@@ -1,6 +1,7 @@
 package com.example.androidfinalproject.DataManage;
 
 import com.example.androidfinalproject.Classes.Song;
+import com.example.androidfinalproject.R;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class DataManager {
                 .setName("Thinking out Loud")
                 .setNameAuthor("Ed Sheeran")
                 .setPath("https://www.youtube.com/watch?v=VDzBQvIUn6o")
+                .setImg(R.drawable.thinkingofloud)
                 .setDuration(281)
         );
 
@@ -20,6 +22,7 @@ public class DataManager {
                 .setName("Photograph")
                 .setNameAuthor("Ed Sheeran")
                 .setPath("https://www.youtube.com/watch?v=hfukCZC1xQ8")
+                .setImg(R.drawable.photograph)
                 .setDuration(297)
         );
 
@@ -27,6 +30,7 @@ public class DataManager {
                 .setName("Perfect")
                 .setNameAuthor("Ed Sheeran")
                 .setPath("https://www.youtube.com/watch?v=_x4a3OsvwkY")
+                .setImg(R.drawable.perfect)
                 .setDuration(263)
         );
 
@@ -34,6 +38,7 @@ public class DataManager {
                 .setName("A Thousand Years")
                 .setNameAuthor("Christina Perri")
                 .setPath("https://www.youtube.com/watch?v=kDKxQiVdy1c")
+                .setImg(R.drawable.thousandyears)
                 .setDuration(328)
         );
 
@@ -41,6 +46,7 @@ public class DataManager {
                 .setName("Someone Like You")
                 .setNameAuthor("Adele")
                 .setPath("https://www.youtube.com/watch?v=iZqs1NPrs08")
+                .setImg(R.drawable.someonelikeyou)
                 .setDuration(284)
         );
 
@@ -48,6 +54,7 @@ public class DataManager {
                 .setName("Diamonds")
                 .setNameAuthor("Rihanna")
                 .setPath("https://www.youtube.com/watch?v=lWA2pjMjpBs")
+                .setImg(R.drawable.diamonds)
                 .setDuration(225)
         );
 

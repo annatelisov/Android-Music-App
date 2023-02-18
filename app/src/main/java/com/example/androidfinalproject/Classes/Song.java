@@ -6,6 +6,7 @@ public class Song {
     private String nameAuthor = "";
 
     private String path = "";
+    private int img = 0;
     private int duration = 0;
     private boolean star = false;
     public Song() {
@@ -35,6 +36,15 @@ public class Song {
 
     public Song setPath(String path) {
         this.path = path;
+        return this;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public Song setImg(int img) {
+        this.img = img;
         return this;
     }
 

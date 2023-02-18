@@ -13,6 +13,7 @@
             android:id="@+id/song_IMG_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="16dp"
             app:srcCompat="@drawable/ic_music"
             android:scaleType="centerCrop"
             />

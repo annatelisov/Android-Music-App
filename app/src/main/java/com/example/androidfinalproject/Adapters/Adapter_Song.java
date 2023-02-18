@@ -1,7 +1,6 @@
 package com.example.androidfinalproject.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidfinalproject.Classes.MySong;
-import com.example.androidfinalproject.Activities.SongActivity;
 import com.example.androidfinalproject.Classes.Song;
 import com.example.androidfinalproject.R;
 import com.example.androidfinalproject.Utils.MyStringUtils;
@@ -55,6 +52,8 @@ public class Adapter_Song extends RecyclerView.Adapter<Adapter_Song.SongViewHold
         holder.song_LBL_name.setText(song.getName());
         holder.song_LBL_nameauthor.setText(song.getNameAuthor());
         holder.song_LBL_duration.setText(MyStringUtils.getTimeBySeconds(song.getDuration()));
+        holder.song_IMG_image.setImageResource(song.getImg());
+
 
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_TXT_nosongs;
     private AppCompatButton main_BTN_gotouserpage;
     private AppCompatButton main_BTN_addsong;
+    private AppCompatButton main_BTN_addimg;
     private LinearLayoutCompat main_LINEAR_addsongwindow;
     private EditText main_TXT_addname;
     private EditText main_TXT_addauthorname;
@@ -145,11 +146,13 @@ public class MainActivity extends AppCompatActivity {
         return newSong;
     }
 
+
     private void findViews(){
         main_LST_songs = findViewById(R.id.main_LST_songs);
         main_TXT_nosongs = findViewById(R.id.main_TXT_nosongs);
         main_BTN_gotouserpage = findViewById(R.id.main_BTN_gotouserpage);
         main_BTN_addsong = findViewById(R.id.main_BTN_addsong);
+        main_BTN_addimg = findViewById(R.id.main_BTN_addimg);
         main_LINEAR_addsongwindow = findViewById(R.id.main_LINEAR_addsongwindow);
         main_TXT_addname = findViewById(R.id.main_TXT_addname);
         main_TXT_addauthorname = findViewById(R.id.main_TXT_addauthorname);
