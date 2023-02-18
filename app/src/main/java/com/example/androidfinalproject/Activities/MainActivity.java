@@ -1,5 +1,6 @@
 package com.example.androidfinalproject.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -60,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         findViews();
 
-        songs = DataManager.setSongs();
-        readSongs();
+        songs = readSongs();
+        if(songs.size() == 0)
+            songs = DataManager.setSongs();
         Adapter_Song adapter_song = new Adapter_Song(this, songs);
         main_LST_songs.setLayoutManager(new LinearLayoutManager(this));
         main_LST_songs.setAdapter(adapter_song);
@@ -172,21 +174,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void readSongs() {
-        db.getReference("Songs").addListenerForSingleValueEvent(new ValueEventListener() {
+    private ArrayList readSongs() {
+        ArrayList allSongs =  new ArrayList<>();
+        db.getReference().child("Songs").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot song : dataSnapshot.getChildren()) {
-                        songs.add(song.getValue(Song.class));
+                        Song s = song.getValue(Song.class);
+                        allSongs.add(s);
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
+        return allSongs;
     }
 
 }
